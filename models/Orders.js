@@ -10,3 +10,8 @@ exports.findAllOrder = function(callback)
 
 	db.executeQuery("select * from orders o , orderdetails od , users u where o.OrderID = od.OrderID and o.UserID = u.f_ID group by o.OrderID",callback);
 }
+
+erports.DelOne = function(req,callback)
+{
+	db.executeQuery("delete from products where ProID = ?",req,callback);
+}

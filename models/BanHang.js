@@ -17,7 +17,7 @@ exports.update =function(celebrities,callback){
 
 exports.delete =function(celebrities,callback){
 
-	db.executeQuery("Delete from celebrities where id = ?",celebrities,callback);
+	db.executeQuery("Delete from products where ProID = ?",celebrities,callback);
 
 }
 
