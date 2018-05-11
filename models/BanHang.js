@@ -16,6 +16,7 @@ exports.update =function(celebrities,callback){
 }
 
 exports.delete =function(celebrities,callback){
+	console.log("Xoa thanh cong san pham");
 
 	db.executeQuery("Delete from products where ProID = ?",celebrities,callback);
 

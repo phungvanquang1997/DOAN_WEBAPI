@@ -16,13 +16,28 @@ exports.findAllOrder = function(req,res)
 }
 
 exports.DelOne = function (req, res) {
-    var SanPhamID = req.params.SanPhamID;
-     BanHangModel.DelOne(celebrityID,function (err, data) {
+    var ID = req.params.ID;
+     OrdersModel.DelOne(ID,function (err, data) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
           res.status(201).send();
+        }
+    );
+
+};
+
+//nhớ send data giùm
+
+exports.Detail = function (req, res) {
+    var ID = req.params.ID;
+     OrdersModel.Detail(ID,function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.send(data);
         }
     );
 

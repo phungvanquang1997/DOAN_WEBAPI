@@ -50,7 +50,7 @@ exports.update = function (req, res) {
 //Xoa theo mã sản phẩm
 exports.delete = function (req, res) {
     var SanPhamID = req.params.SanPhamID;
-     BanHangModel.delete(celebrityID,function (err, data) {
+     BanHangModel.delete(SanPhamID,function (err, data) {
             if (err) {
                 res.status(400).send(err);
                 return;
