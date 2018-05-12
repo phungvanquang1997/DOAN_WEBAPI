@@ -4,7 +4,6 @@ var cm = require('../models/BanHang');
 
 
 exports.create = function (req, res) {
-
      BanHangModel.create(req.body,function (err, data) {
             if (err) {
                 res.status(400).send(err);

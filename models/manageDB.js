@@ -10,6 +10,7 @@ exports.executeQuery = function (query, callback) {
         connection.query(query, function (err, rows) {
             connection.release();
             if (!err) {
+                console.log("INSERTED");
                 callback(null, rows);
             }
         });
