@@ -19,4 +19,6 @@ router.put('/BanHang/:SanPhamID', BanHang.update);
 router.delete('/BanHang/:SanPhamID', BanHang.delete);
 
 
+
+
 module.exports = router;

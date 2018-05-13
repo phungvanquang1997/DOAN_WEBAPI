@@ -29,8 +29,15 @@ exports.findAllProduct = function (req, res) {
 
 
 exports.findOne = function (req, res) {
-    // Find a single note with a noteId
-
+     var SanPhamID = req.params.SanPhamID;
+    BanHangModel.findOne(SanPhamID,function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+            res.send(data);
+        }
+    );
 };
 
 exports.update = function (req, res) {
