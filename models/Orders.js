@@ -31,3 +31,5 @@ exports.UpdateStatusOrder = function(req,callback)
 	console.log(req);
 	db.executeQuery("Update orders set Status = ? where OrderID = ?",[req.Status,req.OrderID],callback);
 }
+
+
