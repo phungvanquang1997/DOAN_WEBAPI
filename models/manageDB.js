@@ -2,6 +2,7 @@ var pool = require('./mysqlConnector');
 exports.executeQuery = function (query, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
+            console.log("error cmnrrrr");
             if (connection)
                 connection.release();
    
@@ -10,7 +11,6 @@ exports.executeQuery = function (query, callback) {
         connection.query(query, function (err, rows) {
             connection.release();
             if (!err) {
-                console.log("INSERTED");
                 callback(null, rows);
             }
         });
@@ -22,6 +22,7 @@ exports.executeQuery = function (query, callback) {
 exports.executeQuery = function (query, data, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
+            console.log("error cmnrrrr");
             if (connection)
                 connection.release();
             return;

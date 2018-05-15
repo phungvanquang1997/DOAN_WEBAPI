@@ -8,7 +8,7 @@ var db = require('./manageDB');
 exports.findAllOrder = function(callback)
 {
 
-	db.executeQuery("select * from orders o , orderdetails od , users u where o.OrderID = od.OrderID and o.UserID = u.f_ID group by o.OrderID",callback);
+	db.executeQuery("select o.OrderID , od.Amount, o.Status , u.f_Name from orders o , orderdetails od , users u where o.OrderID = od.OrderID and o.UserID = u.f_ID GROUP BY o.OrderID,, od.Amount, o.Status , u.f_Name",callback);
 }
 
 exports.DelOne = function(req,callback)
