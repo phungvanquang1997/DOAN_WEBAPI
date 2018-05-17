@@ -3,6 +3,8 @@ var cm = require('../models/BanHang');
 
 
 
+
+
 exports.create = function (req, res) {
      BanHangModel.create(req.body,function (err, data) {
             if (err) {
@@ -29,16 +31,18 @@ exports.findAllProduct = function (req, res) {
 
 
 exports.findOne = function (req, res) {
-     var SanPhamID = req.params.SanPhamID;
-    BanHangModel.findOne(SanPhamID,function (err, data) {
-            if (err) {
-                res.status(400).send(err);
-                return;
+
+         var SanPhamID = req.params.SanPhamID;
+        BanHangModel.findOne(SanPhamID,function (err, data) {
+                if (err) {
+                    res.status(400).send(err);
+                    return;
+                }
+                res.send(data);
             }
-            res.send(data);
-        }
-    );
-};
+        );
+    };
+
 
 exports.update = function (req, res) {
     //req.body -> POST hết thông tin 

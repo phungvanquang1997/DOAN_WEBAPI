@@ -18,6 +18,7 @@ exports.update =function(products,callback){
 exports.findOne = function(id,callback)
 {
 	console.log(id);
+
 	 db.executeQuery("select * from products where ProID = ? ", id , callback);
 }
 

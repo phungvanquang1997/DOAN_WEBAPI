@@ -3,6 +3,19 @@
 var UserModel = require('../models/Users');    
 
 
+exports.Create = function(req,res)
+{
+
+    UserModel.Create(req.body,function(err,data)
+    {
+        if (err) {
+                        res.status(400).send(err);
+                        return;
+                }
+        res.status(201).send();
+    })
+}
+
 exports.findAll = function(req,res)
 {
     UserModel.findAll(function(err,data)

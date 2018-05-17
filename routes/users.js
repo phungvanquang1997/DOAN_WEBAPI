@@ -7,5 +7,6 @@ router.get('/users', user.findAll);
 router.delete('/users/:ID', user.DelOne);
 router.get('/users/:ID',user.Detail);
 router.put('/users/:ID',user.UpdateStatusUser);
+router.post('/users',user.Create);
 
 module.exports = router;

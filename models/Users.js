@@ -24,6 +24,12 @@ exports.Detail = function(req,callback)
 }
 
 
+exports.Create = function(req,callback)
+{
+	console.log(req);
+	db.executeQuery("INSERT INTO users SET ?",req,callback);
+}
+
 
 exports.UpdateStatusUser = function(req,callback)
 {

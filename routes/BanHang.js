@@ -3,20 +3,57 @@ var router = express.Router();
 
 var BanHang = require('../controllers/BanHang');
 
+var jwt = require('jsonwebtoken');
+var passport = require("passport");
+var passportJWT = require("passport-jwt");
 
-router.post('/BanHang', BanHang.create);
+var ExtractJwt = passportJWT.ExtractJwt;
+var JwtStrategy = passportJWT.Strategy;
+
+var jwtOptions = {}
+jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
+jwtOptions.secretOrKey = 'tasmanianDevil123';
 
 
-router.get('/BanHang', BanHang.findAllProduct);
+    var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
+    console.log('payload received', jwt_payload);   
+    next(null, jwt_payload)
+});
+
+passport.use(strategy);
 
 
-router.get('/BanHang/:SanPhamID', BanHang.findOne);
 
 
-router.put('/BanHang/:SanPhamID', BanHang.update);
+router.post('/BanHang', passport.authenticate('jwt', { session: false }), function(req1, res1){
+        res1.json("Success! ");
+	BanHang.create
+});
 
 
-router.delete('/BanHang/:SanPhamID', BanHang.delete);
+router.get('/BanHang', passport.authenticate('jwt', { session: false }), function(req1, res1){
+        res1.json("Success! ");
+	BanHang.findAllProduct
+});
+
+
+router.get('/BanHang/:SanPhamID',  passport.authenticate('jwt', { session: false }), function(req1, res1){
+        res1.json("Success! ");
+        BanHang.findOne;
+ })
+
+
+router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), function(req1, res1){
+        res1.json("Success! ");
+         BanHang.update
+     }
+ )
+
+
+router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), function(req1, res1){
+        res1.json("Success! ");
+	BanHang.delete
+});
 
 
 
