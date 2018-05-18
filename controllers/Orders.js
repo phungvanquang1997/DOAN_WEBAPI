@@ -46,12 +46,14 @@ exports.Detail = function (req, res) {
 
 exports.UpdateStatusOrder = function(req,res)
 {
+
     OrdersModel.UpdateStatusOrder(req.body,function(err,data){
         if (err) {
                 res.status(400).send(err);
                 return;
             }
             res.status(201).send();
+            
         }
     );
 

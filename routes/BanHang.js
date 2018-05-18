@@ -15,7 +15,7 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 jwtOptions.secretOrKey = 'tasmanianDevil123';
 
 
-    var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
+var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
     console.log('payload received', jwt_payload);   
     next(null, jwt_payload)
 });
@@ -25,35 +25,19 @@ passport.use(strategy);
 
 
 
-router.post('/BanHang', passport.authenticate('jwt', { session: false }), function(req1, res1){
-        res1.json("Success! ");
-	BanHang.create
-});
+router.post('/BanHang', passport.authenticate('jwt', { session: false }),BanHang.create);
 
 
-router.get('/BanHang', passport.authenticate('jwt', { session: false }), function(req1, res1){
-        res1.json("Success! ");
-	BanHang.findAllProduct
-});
+router.get('/BanHang', passport.authenticate('jwt', { session: false }),BanHang.findAllProduct);
 
 
-router.get('/BanHang/:SanPhamID',  passport.authenticate('jwt', { session: false }), function(req1, res1){
-        res1.json("Success! ");
-        BanHang.findOne;
- })
+router.get('/BanHang/:SanPhamID',  passport.authenticate('jwt', { session: false }), BanHang.findOne);
 
 
-router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), function(req1, res1){
-        res1.json("Success! ");
-         BanHang.update
-     }
- )
+router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), BanHang.update);
+ 
 
-
-router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), function(req1, res1){
-        res1.json("Success! ");
-	BanHang.delete
-});
+router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), BanHang.delete);
 
 
 

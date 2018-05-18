@@ -29,10 +29,10 @@ exports.login = function (req, res) {
                 res.status(400).send(err);
                 return;
             }
-     	
+     
             if(data[0].num_row===1)
             {
-         	 var payload = {id: 1, name:'admin', role:'admin'};
+         	 var payload = {username: req.body.ID};
 			var token = jwt.sign(payload, jwtOptions.secretOrKey);
 			res.json({message: "ok", token: token});
 				
