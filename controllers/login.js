@@ -29,18 +29,20 @@ exports.login = function (req, res) {
                 res.status(400).send(err);
                 return;
             }
-     
+            console.log(data[0].num_row);
             if(data[0].num_row===1)
             {
-         	 var payload = {username: req.body.ID};
-			var token = jwt.sign(payload, jwtOptions.secretOrKey);
-			res.json({message: "ok", token: token});
-				
+             	 var payload = {username: req.body.ID};
+    			var token = jwt.sign(payload, jwtOptions.secretOrKey);
+    			res.json({message: "ok", token: token});
+    			res.status(201).send();
 			}
+            
 			else
+            {
 				res.json({err : "error"});
-          	res.status(201).send();
-        
+                 res.status(400).send();
+             }
 	       }
     );
 

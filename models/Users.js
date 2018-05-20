@@ -2,6 +2,7 @@
 
 var db = require('./manageDB');
 
+var md5 = require('md5');
 
 //lấy ds các đơn hàng theo ngày gần nhất
 
@@ -26,7 +27,7 @@ exports.Detail = function(req,callback)
 
 exports.Create = function(req,callback)
 {
-	console.log(req);
+	req.f_Password = md5(req.f_Password);
 	db.executeQuery("INSERT INTO users SET ?",req,callback);
 }
 
