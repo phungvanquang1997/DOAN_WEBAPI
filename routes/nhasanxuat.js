@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var BanHang = require('../controllers/BanHang');
+var nsx = require('../controllers/nhasanxuat');
 
 var jwt = require('jsonwebtoken');
 var passport = require("passport");
@@ -25,21 +25,19 @@ passport.use(strategy);
 
 
 
-router.post('/BanHang', passport.authenticate('jwt', { session: false }),BanHang.create);
+router.post('/nsx', passport.authenticate('jwt', { session: false }),nsx.create);
 
 
-router.get('/BanHang',BanHang.findAllProduct);
+router.get('/nsx',nsx.findAll);
 
 
-router.get('/BanHang/:SanPhamID',  BanHang.findOne);
-
-router.get('/BanHang/producer/:ID',  BanHang.findOneByProducer);
+router.get('/nsx/:ID', nsx.findOne);
 
 
-router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), BanHang.update);
+router.put('/nsx/:ID',passport.authenticate('jwt', { session: false }), nsx.update);
  
 
-router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), BanHang.delete);
+router.delete('/nsx/:ID', passport.authenticate('jwt', { session: false }), nsx.delete);
 
 
 

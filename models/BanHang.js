@@ -30,3 +30,9 @@ exports.delete =function(productsid,callback){
 
 
  
+ exports.findOneByProducer = function(req,callback)
+ {
+ 	console.log("producer");
+	 db.executeQuery("select * from products where NSX = ? ", req , callback);
+
+ }
