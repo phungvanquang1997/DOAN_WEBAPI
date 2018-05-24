@@ -29,10 +29,36 @@ exports.findAllProduct = function (req, res) {
     );
 };
 
+exports.find5ProductTheSameType = function(req,res)
+{
+     BanHangModel.find5ProductTheSameType(function (err, data) {
+                if (err) {
+                    res.status(400).send(err);
+                    return;
+                }
+                res.send(data);
+            }
+        );
+}
+
 
 exports.findOneByProducer = function (req, res) {
          var ID = req.params.ID;
         BanHangModel.findOneByProducer(ID,function (err, data) {
+                if (err) {
+                    res.status(400).send(err);
+                    return;
+                }
+                res.send(data);
+            }
+        );
+    };
+
+
+exports.find5Product = function (req, res) {
+        var ID = req.params.ID;
+
+        BanHangModel.find5Product(ID,function (err, data) {
                 if (err) {
                     res.status(400).send(err);
                     return;
@@ -86,6 +112,18 @@ exports.delete = function (req, res) {
 };
 
 
+exports.findOneWithNameProducer = function(req,res)
+{
+    var ID = req.params.ID;
+     BanHangModel.findOneWithNameProducer (ID,function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.send(data);
+        }
+    );
+}
 
 
 

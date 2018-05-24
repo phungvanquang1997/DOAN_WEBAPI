@@ -36,3 +36,23 @@ exports.delete =function(productsid,callback){
 	 db.executeQuery("select * from products where NSX = ? ", req , callback);
 
  }
+
+
+ exports.findOneWithNameProducer = function(req,callback)
+ {
+ 	console.log(req);
+ 	db.executeQuery("select * from products p , nhasanxuat n , Origin o where p.NSX = n.IDnsx  and p.OriginID = o.OriginID and  p.ProID = ?",req,callback);
+ }
+
+ exports.find5Product = function(req,callback)
+ {
+ 	var sql = "select * from products where nsx ='" +req+"'limit 5";
+ 
+ 	db.executeQuery(sql,req,callback);
+ }
+
+ exports.find5ProductTheSameType = function(req,callback)
+ {
+ 	var sql = "select * from products limit 5";
+ 	db.executeQuery(sql,req,callback);
+ }

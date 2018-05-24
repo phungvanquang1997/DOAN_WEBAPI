@@ -35,11 +35,19 @@ router.get('/BanHang/:SanPhamID',  BanHang.findOne);
 
 router.get('/BanHang/producer/:ID',  BanHang.findOneByProducer);
 
+router.get('/BanHang/ProductDetail/:ID',BanHang.findOneWithNameProducer);
+
+router.get('/BanHang/Product/5product',BanHang.find5ProductTheSameType);
+
+
+router.get('/BanHang/producer/5product/:ID',BanHang.find5Product);
 
 router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), BanHang.update);
  
 
 router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), BanHang.delete);
+
+
 
 
 
