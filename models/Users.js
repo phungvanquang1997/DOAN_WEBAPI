@@ -12,6 +12,7 @@ exports.findAll = function(callback)
 	db.executeQuery("select * from users",callback);
 }
 
+
 exports.DelOne = function(req,callback)
 {
 	console.log("Xóa thành công User");
@@ -34,8 +35,14 @@ exports.Create = function(req,callback)
 
 exports.UpdateStatusUser = function(req,callback)
 {
-	console.log(req);
-	db.executeQuery("Update users set f_Permission = ? where f_ID = ?",[req.Status,req.UserID],callback);
+	
+
+	
+	var sql = "Update users set f_Username = '"+req.f_Username+"' , f_Name = '" + req.f_Name+"' , f_Email = '" +req.f_Email+"', f_Permission = '"+req.f_Permission+"' , f_DiaChi = '" +req.f_DiaChi+ "' , f_SDT = '"+ req.f_SDT + "' where f_ID = '"+ req.UserID+"'";
+	db.executeQuery(sql, function (err, data){
+        callback(err, data);
+	});
+	/*db.executeQuery("Update users set  f_Username = ? , f_Password = ? , f_Name = ? , f_Email = ? , f_Permission , f_DiaChi = ? , f_SDT = ?  where f_ID = ?",[req.f_Username,req.f_Password,req.f_Name,req.f_Email,req.f_Permission,req.f_DiaChi,req.f_SDT,req.UserID],callback);*/
 }
 
 

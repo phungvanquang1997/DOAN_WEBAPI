@@ -30,6 +30,7 @@ exports.executeQuery = function (query, data, callback) {
         connection.query(query, data, function (err, rows) {
             connection.release();
             if (!err) {
+               
                 callback(null, rows);
             }
         });
