@@ -56,3 +56,63 @@ exports.delete =function(productsid,callback){
  	var sql = "select * from products limit 5";
  	db.executeQuery(sql,req,callback);
  }
+
+
+exports.Search = function(req,callback)
+{	
+	var sql;
+
+	if(!isNaN(req)) // tìm theo giá
+	{
+		sql = "select * from products where Price = '" +req +"'";
+		db.executeQuery(sql, function (err, data){
+        	callback(err, data);
+		});
+	}
+
+	else
+	{
+		// tìm theo tên sản phẩm
+		var num_rows = 0;
+		var num_rows1 = 0;
+
+		sql = "select count(*) as num_rows from products where ProName like '%"+ req +"%'";
+
+		db.executeQuery(sql, function (err, data){
+			console.log(data);
+			num_rows = data[0].num_rows;
+     
+		});
+		
+		sql = "select * as num_rows from products where ProName like '%"+ req +"%'";
+		//không có thì tìm theo tên nhà sản xuất
+		if(num_rows===0)
+		{
+			sql = "select count(*) as num_rows from products p , NhaSanXuat n where p.nsx = n.IDnsx and n.TenNSX like '%"+ req +"%'";
+
+			db.executeQuery(sql, function (err, data){
+				num_rows1 = data[0].num_rows;
+			});
+
+			sql = "select * from products p , NhaSanXuat n where p.nsx = n.IDnsx and n.TenNSX like '%"+ req +"%'";
+
+		}
+
+		
+
+
+
+		
+
+		db.executeQuery(sql, function (err, data){
+        	callback(err, data);
+		});
+
+	}
+	
+
+}
+
+
+
+

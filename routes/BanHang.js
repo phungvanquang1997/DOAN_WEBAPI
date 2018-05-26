@@ -48,6 +48,8 @@ router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }
 router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: false }), BanHang.delete);
 
 
+router.get('/BanHang/Search/:QueryStr',BanHang.Search);
+
 
 
 

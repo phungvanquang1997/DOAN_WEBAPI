@@ -32,7 +32,7 @@ router.put('/users/:ID',passport.authenticate('jwt', { session: false }), user.U
 
 router.post('/users', user.Create); // không cần chứng thực khi đăng ký 
 
-router.post('/CheckPassword',user.CheckPassword);
+router.post('/CheckPassword',passport.authenticate('jwt', { session: false }),user.CheckPassword);
 
-router.put('/UpdatePassword',user.UpdatePassword);
+router.put('/UpdatePassword',passport.authenticate('jwt', { session: false }),user.UpdatePassword);
 module.exports = router;

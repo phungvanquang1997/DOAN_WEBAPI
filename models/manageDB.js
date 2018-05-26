@@ -2,16 +2,21 @@ var pool = require('./mysqlConnector');
 exports.executeQuery = function (query, callback) {
     pool.getConnection(function (err, connection) {
         if (err) {
-            console.log("error cmnrrrr");
             if (connection)
                 connection.release();
    
             return;
         }
-        connection.query(query, function (err, rows) {
-            connection.release();
+        connection.query(query, function (err, rows) { // kết quả nằm ở biến rows
+            connection.release(); 
+
             if (!err) {
+                
                 callback(null, rows);
+            }
+             if(err)
+            {
+                console.log("loi database");
             }
         });
         // connection.on('error', function (err) {
@@ -27,11 +32,16 @@ exports.executeQuery = function (query, data, callback) {
                 connection.release();
             return;
         }
-        connection.query(query, data, function (err, rows) {
+        connection.query(query, data, function (err, rows) {  // kết quả nằm ở biến rows
             connection.release();
+          
             if (!err) {
-               
+                    
                 callback(null, rows);
+            }
+            if(err)
+            {
+                console.log("loi database");
             }
         });
         // connection.on('error', function (err) {

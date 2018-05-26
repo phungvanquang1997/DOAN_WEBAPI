@@ -17,6 +17,19 @@ exports.create = function (req, res) {
 
 };
 
+exports.Search = function(req,res)
+{
+    var queryStr = req.params.QueryStr;
+    BanHangModel.Search(queryStr,function(err,data)
+    {
+        if (err) {
+                res.status(400).send(err);
+                return;
+            }
+        res.send(data);
+    });
+}
+
 exports.findAllProduct = function (req, res) {
     // Retrieve and return all notes from the database.
     BanHangModel.findAllProduct(function (err, data) {
