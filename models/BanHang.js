@@ -11,7 +11,7 @@ exports.create = function(products, callback){
 }
 
 exports.update =function(products,callback){
-	db.executeQuery("UPDATE products set ProName = ? , TinyDes = ? , FullDes = ? , Price = ? ,Quantity = ? , NSX = ? , img_link = ? where ProID = ?",[products.ProName,products.TinyDes,products.FullDes,products.Price,products.Quantity,products.NSX,products.img_link,products.ProID],callback);
+	db.executeQuery("UPDATE products set ProName = ? , TinyDes = ? , FullDes = ? , Price = ? ,Quantity = ? , NSX = ? , img_link = ? , OriginID = ?  where ProID = ?",[products.ProName,products.TinyDes,products.FullDes,products.Price,products.Quantity,products.NSX,products.img_link,products.OriginID,products.ProID],callback);
 }
 
 

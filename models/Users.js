@@ -36,8 +36,6 @@ exports.Create = function(req,callback)
 exports.UpdateStatusUser = function(req,callback)
 {
 	
-
-	
 	var sql = "Update users set f_Username = '"+req.f_Username+"' , f_Name = '" + req.f_Name+"' , f_Email = '" +req.f_Email+"', f_Permission = '"+req.f_Permission+"' , f_DiaChi = '" +req.f_DiaChi+ "' , f_SDT = '"+ req.f_SDT + "' where f_ID = '"+ req.UserID+"'";
 	db.executeQuery(sql, function (err, data){
         callback(err, data);
@@ -46,3 +44,18 @@ exports.UpdateStatusUser = function(req,callback)
 }
 
 
+
+exports.CheckPassword = function(req,callback)
+{
+	console.log(req);
+	req.f_Password = md5(req.f_Password);
+	db.executeQuery("select count(*) as ok from users where f_Username = ?  and f_Password =  ?",[req.f_Username,req.f_Password]  , callback);
+}
+
+
+exports.UpdatePassword = function(req,callback)
+{
+	req.f_Password = md5(req.f_Password);
+	db.executeQuery("Update users set f_Password = ? where f_ID = ? ",[req.f_Password,req.f_ID],callback);
+
+}

@@ -13,6 +13,8 @@ var Orders = require('./routes/Orders');
 var Users = require('./routes/Users');
 var Login = require('./routes/login');
 var NSX = require('./routes/nhasanxuat');
+var listImg = require('./routes/listImg');
+var Origin = require('./routes/Origin');
 
 var app = express();
 app.use(cors());
@@ -41,6 +43,8 @@ app.use('/api/orders',Orders);
 app.use('/api/users',Users);
 app.use('/login',Login);
 app.use('/nsx',NSX);
+app.use('/listImg',listImg);
+app.use('/Origin',Origin);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');

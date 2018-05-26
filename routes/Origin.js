@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var user = require('../controllers/Users');
+var Origin = require('../controllers/Origin');
 
 var jwt = require('jsonwebtoken');
 var passport = require("passport");
@@ -22,17 +22,7 @@ jwtOptions.secretOrKey = 'tasmanianDevil123';
 
 passport.use(strategy);
 
-router.get('/users', passport.authenticate('jwt', { session: false }), user.findAll);
+router.get('/',Origin.findAll);
 
-router.delete('/users/:ID', passport.authenticate('jwt', { session: false }), user.DelOne);
-
-router.get('/users/:ID',passport.authenticate('jwt', { session: false }), user.Detail);
-
-router.put('/users/:ID',passport.authenticate('jwt', { session: false }), user.UpdateStatusUser);
-
-router.post('/users', user.Create); // không cần chứng thực khi đăng ký 
-
-router.post('/CheckPassword',user.CheckPassword);
-
-router.put('/UpdatePassword',user.UpdatePassword);
+  
 module.exports = router;

@@ -18,7 +18,8 @@ var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 passport.use(strategy);
 
 
-
+var permission = null;
+var UID = null;
 
 
 exports.login = function (req, res) {
@@ -29,7 +30,10 @@ exports.login = function (req, res) {
                 res.status(400).send(err);
                 return;
             }
-            console.log(data[0].num_row);
+            console.log(data);
+            permission = data[0].f_Permission;
+            UID = data[0].f_ID;
+   
             if(data[0].num_row===1)
             {
              	 var payload = {username: req.body.ID};
@@ -49,5 +53,5 @@ exports.login = function (req, res) {
 };
 
 exports.secret = function(req,res){
-    res.json("Success! You can not see this without a token");
+    res.json({isAdmin : permission,uid: UID});
 };
