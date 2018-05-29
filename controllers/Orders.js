@@ -28,6 +28,19 @@ exports.DelOne = function (req, res) {
 
 };
 
+exports.Pay = function(req,res)
+{
+    OrdersModel.Pay(req.body,function(err,data)
+    {
+           if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.status(201).send();
+        }
+    )
+}
+
 //nhớ send data giùm
 
 exports.Detail = function (req, res) {

@@ -57,6 +57,12 @@ exports.delete =function(productsid,callback){
  	db.executeQuery(sql,req,callback);
  }
 
+ exports.UpdateView = function(req,callback)
+ {
+ 	var sql = "Update products set View = View + 1 where ProID = '" + req+"'";
+ 	db.executeQuery(sql,req,callback);
+ }
+
 
 exports.Search = function(req,callback)
 {	
@@ -98,10 +104,14 @@ exports.Search = function(req,callback)
 
 		}
 
+		if(num_rows1===1)
+		{
+
+			sql = "select * from products p , origin o where p.OriginID = o.OriginID and o.OriginName like '%"+ req +"%'";
+
+		}
+
 		
-
-
-
 		
 
 		db.executeQuery(sql, function (err, data){

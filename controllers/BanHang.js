@@ -17,6 +17,19 @@ exports.create = function (req, res) {
 
 };
 
+exports.UpdateView = function(req,res)
+{
+    var ID = req.params.ID;
+    BanHangModel.UpdateView(ID,function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.status(201).send();
+        }
+    );
+}
+
 exports.Search = function(req,res)
 {
     var queryStr = req.params.QueryStr;

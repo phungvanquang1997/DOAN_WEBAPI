@@ -29,5 +29,7 @@ router.delete('/orders/:ID', passport.authenticate('jwt', { session: false }),or
 router.get('/orders/:ID',passport.authenticate('jwt', { session: false }),orders.Detail);
 	
 router.put('/orders/:ID',passport.authenticate('jwt', { session: false }),orders.UpdateStatusOrder);
+
+router.post('/Pay/',passport.authenticate('jwt', { session: false }),orders.Pay);
   
 module.exports = router;

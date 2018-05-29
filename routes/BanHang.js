@@ -50,6 +50,8 @@ router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: fal
 
 router.get('/BanHang/Search/:QueryStr',BanHang.Search);
 
+router.get('/BanHang/UpdateView/:ID',BanHang.UpdateView);	
+
 
 
 
