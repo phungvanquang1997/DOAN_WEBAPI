@@ -31,5 +31,7 @@ router.get('/orders/:ID',passport.authenticate('jwt', { session: false }),orders
 router.put('/orders/:ID',passport.authenticate('jwt', { session: false }),orders.UpdateStatusOrder);
 
 router.post('/Pay/',passport.authenticate('jwt', { session: false }),orders.Pay);
+
+router.post('/PurchaseHistory/',passport.authenticate('jwt', { session: false }),orders.PurchaseHistory);
   
 module.exports = router;

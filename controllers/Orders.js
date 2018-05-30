@@ -15,6 +15,18 @@ exports.findAllOrder = function(req,res)
     })
 }
 
+exports.PurchaseHistory = function(req,res)
+{
+    OrdersModel.PurchaseHistory(req.body,function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.send(data);
+        }
+    );
+}
+
 exports.DelOne = function (req, res) {
     var ID = req.params.ID;
      OrdersModel.DelOne(ID,function (err, data) {

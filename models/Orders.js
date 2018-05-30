@@ -8,7 +8,7 @@ var db = require('./manageDB');
 exports.findAllOrder = function(callback)
 {
 
-	db.executeQuery("select o.OrderID , od.Amount, o.Status , u.f_Name , u.f_SDT from orders o , orderdetails od , users u where o.OrderID = od.OrderID and o.UserID = u.f_ID GROUP BY o.OrderID",callback);
+	db.executeQuery("select o.OrderID , od.Amount, o.Status , u.f_Name , u.f_SDT from orders o , orderdetails od , users u where o.OrderID = od.OrderID and o.Username = u.f_Username GROUP BY o.OrderID",callback);
 }
 
 exports.DelOne = function(req,callback)
@@ -17,11 +17,17 @@ exports.DelOne = function(req,callback)
 	db.executeQuery("delete from orders where OrderID = ?",req,callback);
 }
 
+exports.PurchaseHistory = function(req,callback)
+{
+	console.log(req);
+	db.executeQuery("select * from orders o where o.Username = ?",req.Username,callback);
+}
+
 
 exports.Detail = function(req,callback)
 {
 	
-	db.executeQuery("select o.`Status` as Status ,od.Quantity as Quantity,od.ProID as ProID,p.Price as Price,p.ProName as ProName from orders o , orderdetails od , products p where p.ProID = od.ProID and o.OrderID = od.OrderID AND od.OrderID = ? ",req,callback);
+	db.executeQuery("select o.`Status` as Status ,od.Quantity as Quantity,od.ProID as ProID,p.Price as Price,p.ProName as ProName from orders o , orderdetails od , products p where p.ProID = od.ProID and o.OrderID = od.OrderID AND o.OrderID = ? ",req,callback);
 }
 
 
