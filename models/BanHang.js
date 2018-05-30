@@ -28,8 +28,28 @@ exports.delete =function(productsid,callback){
 	db.executeQuery("Delete from products where ProID = ?",productsid,callback);
 }
 
+exports.NewProducts = function(callback)
+{
+	var sql = "select * from products order by NgayNhap DESC limit 10";
 
+			db.executeQuery(sql, callback)
+}
  
+ exports.ProductViewest = function(callback)
+{
+	var sql = "select * from products order by View DESC limit 10";
+
+		db.executeQuery(sql, callback)
+}
+
+ exports.BestSeller = function(callback)
+{
+	var sql = "select * from products order by SoLuongBan limit 10";
+	
+	db.executeQuery(sql, callback)
+ }
+	
+
  exports.findOneByProducer = function(req,callback)
  {
  	console.log("producer");

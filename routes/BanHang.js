@@ -40,6 +40,13 @@ router.get('/BanHang/ProductDetail/:ID',BanHang.findOneWithNameProducer);
 router.get('/BanHang/Product/5product',BanHang.find5ProductTheSameType);
 
 
+router.post('/BanHang/NewProducts/',BanHang.NewProducts);	
+
+router.post('/BanHang/ProductViewest/',BanHang.ProductViewest);	
+
+router.post('/BanHang/BestSeller/',BanHang.BestSeller);	
+
+
 router.get('/BanHang/producer/5product/:ID',BanHang.find5Product);
 
 router.put('/BanHang/:SanPhamID',passport.authenticate('jwt', { session: false }), BanHang.update);
@@ -51,6 +58,7 @@ router.delete('/BanHang/:SanPhamID', passport.authenticate('jwt', { session: fal
 router.get('/BanHang/Search/:QueryStr',BanHang.Search);
 
 router.get('/BanHang/UpdateView/:ID',BanHang.UpdateView);	
+
 
 
 
