@@ -5,7 +5,6 @@ exports.findAllProduct = function (callback) {
 }
 
 exports.create = function(products, callback){
-	console.log(products);
 	
     db.executeQuery("INSERT INTO products SET ?", products, callback);
 }

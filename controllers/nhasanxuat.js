@@ -26,6 +26,18 @@ exports.findAll= function (req, res) {
     );
 };
 
+exports.findAll1= function (req, res) {
+    // Retrieve and return all notes from the database.
+    NSXModel.findAll1(function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+            res.send(data);
+        }
+    );
+};
+
 
 exports.findOne = function (req, res) {
 

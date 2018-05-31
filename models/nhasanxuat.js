@@ -1,8 +1,13 @@
 var db = require('./manageDB');
 
 exports.findAll = function (callback) {
-    db.executeQuery("select * from nhasanxuat", callback);
+    db.executeQuery("select n.IDnsx,n.TenNSX, count(p.ProName) as 'num' from products p , nhasanxuat n where n.IDnsx = p.NSX group by p.NSX", callback);
 }
+
+exports.findAll1 = function (callback) {
+    db.executeQuery("select * from nhasanxuat",callback);
+}
+
 
 exports.create = function(req, callback){
 

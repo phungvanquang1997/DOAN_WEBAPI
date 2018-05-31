@@ -39,6 +39,7 @@ router.put('/nsx/:ID',passport.authenticate('jwt', { session: false }), nsx.upda
 
 router.delete('/nsx/:ID', passport.authenticate('jwt', { session: false }), nsx.delete);
 
+router.get('/findAll',passport.authenticate('jwt', { session: false }),nsx.findAll1);
 
 
 

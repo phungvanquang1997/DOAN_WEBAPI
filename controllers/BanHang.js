@@ -8,10 +8,11 @@ var cm = require('../models/BanHang');
 exports.create = function (req, res) {
      BanHangModel.create(req.body,function (err, data) {
             if (err) {
-                res.status(400).send(err);
+                res.Status(400).send(err);
                 return;
             }
-          res.status(201).send();
+            /* res.send(data);*/
+           res.status(201).send();
         }
     );
 
