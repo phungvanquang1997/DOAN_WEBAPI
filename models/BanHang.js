@@ -14,6 +14,31 @@ exports.update =function(products,callback){
 }
 
 
+exports.Pagination = function(current_page,callback)
+{
+	var next_page = current_page + 1;
+	var prev_page = current_page - 1;
+	var limit = 10;
+	var offset = (current_page - 1) * limit;
+	var sql = "select * from products limit "+ offset + "," + limit;
+
+
+	db.executeQuery(sql, function (err, data){
+        	callback(err, data);
+		});
+}
+
+exports.GetNumPage = function(callback)
+{
+	var sql = "select count(*) as num from products";
+	db.executeQuery(sql, function (err, data){
+			var numPage = Math.ceil(data[0].num / 10);
+			data[0].num = numPage;
+			console.log(data);
+		callback(err, data);
+		});
+}
+
 exports.findOne = function(id,callback)
 {
 	console.log(id);

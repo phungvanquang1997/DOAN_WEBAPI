@@ -60,7 +60,9 @@ router.get('/BanHang/Search/:QueryStr',BanHang.Search);
 router.get('/BanHang/UpdateView/:ID',BanHang.UpdateView);	
 
 
+router.get('/BanHang/Pagination/:ID',BanHang.Pagination);	
 
+router.get('/BanHang/Page/GetNumPage',BanHang.GetNumPage);
 
 
 

@@ -3,6 +3,18 @@ var cm = require('../models/BanHang');
 
 
 
+exports.Pagination = function(req,res)
+{
+    BanHangModel.Pagination(req.params.ID,function(err,data)
+    {
+          if (err) {
+                res.status(400).send(err);
+                return;
+            }
+          res.status(201).send(data);
+    })
+
+}
 
 
 exports.create = function (req, res) {
@@ -17,6 +29,19 @@ exports.create = function (req, res) {
     );
 
 };
+
+exports.GetNumPage = function(req,res)
+{
+ 
+       BanHangModel.GetNumPage(function (err, data) {
+            if (err) {
+                res.status(400).send(err);
+                return;
+            }
+            res.send(data);
+        }
+    );
+}
 
 exports.UpdateView = function(req,res)
 {

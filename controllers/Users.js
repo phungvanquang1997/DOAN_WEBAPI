@@ -5,6 +5,23 @@ var UserModel = require('../models/Users');
 
 exports.Create = function(req,res)
 {
+  var requestQuery = req.query;
+    if( requestQuery != undefined && requestQuery != '' && requestQuery != null && requestQuery.response != undefined && requestQuery.response != '' && requestQuery.response != null ){
+        var response = requestQuery.response;
+            var verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret="+ "6LcvT10UAAAAABfcdvk9_MHVYNd6kADc6uYDpcjO" +"&response=" +response;
+            // Hitting GET request to the URL, Google will respond with success or error scenario.
+            request(verificationUrl,function(error,response,body) {
+            body = JSON.parse(body);
+            // Success will be true or false depending upon captcha validation.
+                if(body.success !== undefined && !body.success) {
+                    res.send({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+                }else{
+                    res.send({"responseCode" : 0,"responseDesc" : "Sucess"});
+                }
+            });
+    }else{
+        res.send({"responseCode" : 1,"responseDesc" : "Failed captcha verification"});
+    }
 
     UserModel.Create(req.body,function(err,data)
     {
