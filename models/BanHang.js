@@ -68,7 +68,7 @@ exports.NewProducts = function(callback)
 
  exports.BestSeller = function(callback)
 {
-	var sql = "select * from products order by SoLuongBan limit 10";
+	var sql = "select * from products order by SoLuongBan DESC limit 10";
 	
 	db.executeQuery(sql, callback)
  }
