@@ -27,7 +27,7 @@ exports.PurchaseHistory = function(req,callback)
 exports.Detail = function(req,callback)
 {
 	
-	db.executeQuery("select o.`Status` as Status ,od.Quantity as Quantity,od.ProID as ProID,p.Price as Price,p.ProName as ProName from orders o , orderdetails od , products p where p.ProID = od.ProID and o.OrderID = od.OrderID AND o.OrderID = ? ",req,callback);
+	db.executeQuery("select * from orders o , orderdetails od , products p , users u where p.ProID = od.ProID and o.Username = u.f_Username and o.OrderID = od.OrderID AND o.OrderID = ? ",req,callback);
 }
 
 
