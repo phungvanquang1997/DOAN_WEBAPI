@@ -33,6 +33,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(function (req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+       res.header("Cache-Control", "no-cache");
+        res.header("Pragma", "no-cache");
+        res.header("Expires", 0)
     next();
 });
 
@@ -51,7 +54,7 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
+app.disable('etag');  
 // error handler
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
