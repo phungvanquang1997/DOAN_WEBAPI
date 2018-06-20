@@ -40,11 +40,11 @@ router.get('/BanHang/ProductDetail/:ID',BanHang.findOneWithNameProducer);
 router.get('/BanHang/Product/5product',BanHang.find5ProductTheSameType);
 
 
-router.post('/BanHang/NewProducts/',BanHang.NewProducts);	
+router.get('/NewProducts/',BanHang.NewProducts);	
 
-router.post('/BanHang/ProductViewest/',BanHang.ProductViewest);	
+router.get('/ProductViewest/',BanHang.ProductViewest);	
 
-router.post('/BanHang/BestSeller/',BanHang.BestSeller);	
+router.get('/BestSeller/',BanHang.BestSeller);	
 
 
 router.get('/BanHang/producer/5product/:ID',BanHang.find5Product);

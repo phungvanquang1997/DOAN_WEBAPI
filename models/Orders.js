@@ -19,7 +19,7 @@ exports.DelOne = function(req,callback)
 
 exports.PurchaseHistory = function(req,callback)
 {
-	console.log(req);
+
 	db.executeQuery("select * from orders o where o.Username = ?",req.Username,callback);
 }
 
@@ -27,14 +27,14 @@ exports.PurchaseHistory = function(req,callback)
 exports.Detail = function(req,callback)
 {
 	
-	db.executeQuery("select * from orders o , orderdetails od , products p , users u where p.ProID = od.ProID and o.Username = u.f_Username and o.OrderID = od.OrderID AND o.OrderID = ? ",req,callback);
+	db.executeQuery("select od.ProID,p.ProName,p.Price,od.Quantity,o.Status from orders o , orderdetails od , products p , users u where p.ProID = od.ProID and o.Username = u.f_Username and o.OrderID = od.OrderID AND o.OrderID = ? ",req,callback);
 }
 
 
 
 exports.UpdateStatusOrder = function(req,callback)
 {
-	console.log(req);
+
 	db.executeQuery("Update orders set Status = ? where OrderID = ?",[req.Status,req.OrderID],callback);
 }
 
@@ -48,8 +48,10 @@ exports.Pay = function(req,callback)
 	db.executeQuery(sql, function (err, data){
 			
      			MaxProID = data[0].Max;
+     			
      			for(var i = 0 ; i < req.SaveProduct.length;i=i+4)
 				{
+				
 						var ProID = req.SaveProduct[i];
 					    var Quantity = req.SaveProduct[i+3];
 					    var Price = req.SaveProduct[i+2];
@@ -58,19 +60,22 @@ exports.Pay = function(req,callback)
 					    var sql = "update products set SoLuongBan = SoLuongBan +"+Quantity +" where ProID = "+ProID+"";
 					    
 					    var sql2 = "insert into orderdetails values('"+ MaxProID +"','"+ ProID +"','"+ Quantity+"','"+ Price+"','"+Amount+"','"+req.CurrentTime+"')";
+						console.log(sql2);
 						db.executeQuery(sql, function (err, data){
-				     			callback(err, data);
-						});
-
+				     				callback(err, data);
+				     			});
 						db.executeQuery(sql1, function (err, data){
-				     			callback(err, data);
-						});
-
+				     				callback(err, data);
+				     			});
 						db.executeQuery(sql2, function (err, data){
-				     			callback(err, data);
-						});
+				     				callback(err, data);
+				     			});
+						
+							console.log("B");
+			
 
 				}
+				callback(err, data);
 				
 		});
 

@@ -15,7 +15,7 @@ exports.findAll = function(callback)
 
 exports.DelOne = function(req,callback)
 {
-	console.log("Xóa thành công User");
+	
 	db.executeQuery("delete from users where f_ID = ?",req,callback);
 }
 
@@ -47,7 +47,7 @@ exports.UpdateStatusUser = function(req,callback)
 
 exports.CheckPassword = function(req,callback)
 {
-	console.log(req);
+
 	req.f_Password = md5(req.f_Password);
 	db.executeQuery("select count(*) as ok from users where f_Username = ?  and f_Password =  ?",[req.f_Username,req.f_Password]  , callback);
 }

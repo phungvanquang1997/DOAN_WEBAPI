@@ -22,7 +22,8 @@ exports.PurchaseHistory = function(req,res)
                 res.status(400).send(err);
                 return;
             }
-          res.send(data);
+            else
+              res.send(data);
         }
     );
 }

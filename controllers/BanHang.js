@@ -82,37 +82,42 @@ exports.findAllProduct = function (req, res) {
 };
 exports.BestSeller = function (req, res) {
     // Retrieve and return all notes from the database.
-
+   /* res.status(200);*/
     BanHangModel.BestSeller(function (err, data) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
-            res.send(data);
+            else
+                res.send(data);
         }
     );
 };
 
 exports.ProductViewest = function (req, res) {
     // Retrieve and return all notes from the database.
+    /*res.status(200);*/
     BanHangModel.ProductViewest(function (err, data) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
-            res.send(data);
+            else
+              res.send(data);
         }
     );
 };
 
 exports.NewProducts = function (req, res) {
     // Retrieve and return all notes from the database.
+  /*  res.status(200);*/
     BanHangModel.NewProducts(function (err, data) {
             if (err) {
                 res.status(400).send(err);
                 return;
             }
-            res.send(data);
+             else
+                 res.send(data);
         }
     );
 };

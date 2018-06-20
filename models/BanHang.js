@@ -34,15 +34,14 @@ exports.GetNumPage = function(callback)
 	db.executeQuery(sql, function (err, data){
 			var numPage = Math.ceil(data[0].num / 10);
 			data[0].num = numPage;
-			console.log(data);
+		
 		callback(err, data);
 		});
 }
 
 exports.findOne = function(id,callback)
 {
-	console.log(id);
-
+	
 	 db.executeQuery("select * from products where ProID = ? ", id , callback);
 }
 
@@ -56,21 +55,23 @@ exports.NewProducts = function(callback)
 {
 	var sql = "select * from products order by NgayNhap DESC limit 10";
 
-			db.executeQuery(sql, callback)
+			db.executeQuery(sql, callback);
 }
  
  exports.ProductViewest = function(callback)
 {
+
 	var sql = "select * from products order by View DESC limit 10";
 
-		db.executeQuery(sql, callback)
+		db.executeQuery(sql, callback);
 }
 
  exports.BestSeller = function(callback)
 {
+	console.log("ABC");
 	var sql = "select * from products order by SoLuongBan DESC limit 10";
 	
-	db.executeQuery(sql, callback)
+	db.executeQuery(sql, callback);
  }
 	
 
@@ -85,6 +86,7 @@ exports.NewProducts = function(callback)
  exports.findOneWithNameProducer = function(req,callback)
  {
  	console.log(req);
+
  	db.executeQuery("select * from products p , nhasanxuat n , Origin o where p.NSX = n.IDnsx  and p.OriginID = o.OriginID and  p.ProID = ?",req,callback);
  }
 
@@ -129,9 +131,7 @@ exports.Search = function(req,callback)
 		sql = "select count(*) as num_rows from products where ProName like '%"+ req +"%'";
 
 		db.executeQuery(sql, function (err, data){
-			console.log(data);
 			num_rows = data[0].num_rows;
-     
 		});
 		
 		sql = "select * as num_rows from products where ProName like '%"+ req +"%'";
